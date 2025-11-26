@@ -1,13 +1,19 @@
-<Window xmlns="https://github.com/avaloniaui"
+<suki:SukiWindow
+        xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:ChessForge.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:suki="https://github.com/kikipoulet/SukiUI"
+        xmlns:i18n="using:ChessForge.I18n"
+        xmlns:lc ="using:ChessForge.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ChessForge.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="ChessForge">
+        Title="ChessForge"
+        IsMenuVisible="True"
+        BackgroundStyle="Gradient" >
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +21,19 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <suki:SukiWindow.MenuItems>
+        <MenuItem Header="{x:Static i18n:Base.File}">
+            <MenuItem Header="add">
+            
+            </MenuItem>
+        </MenuItem>
+    </suki:SukiWindow.MenuItems>
 
-</Window>
+    <Grid RowDefinitions="Auto, *">
+        <TextBlock Grid.Row="0" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	    <lc:Board Grid.Row="1">
+		
+        </lc:Board>
+    </Grid>
+
+</suki:SukiWindow>

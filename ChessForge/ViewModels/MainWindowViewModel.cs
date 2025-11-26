@@ -1,7 +1,14 @@
-﻿namespace ChessForge.ViewModels
+﻿using ChessForge.Models;
+
+namespace ChessForge.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting { get; } = "Welcome to Avalonia!";
+        public Chess chess = new Chess();
+        public string Greeting { get
+            {
+                return this.chess.Greeting;
+            } 
+        }
     }
 }
