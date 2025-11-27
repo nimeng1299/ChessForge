@@ -61,11 +61,29 @@ namespace ChessForge.I18n {
         }
         
         /// <summary>
+        ///   查找类似 choose file 的本地化字符串。
+        /// </summary>
+        public static string ChooseFile {
+            get {
+                return ResourceManager.GetString("ChooseFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 file 的本地化字符串。
         /// </summary>
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Load Sctipt 的本地化字符串。
+        /// </summary>
+        public static string LoadScript {
+            get {
+                return ResourceManager.GetString("LoadScript", resourceCulture);
             }
         }
     }

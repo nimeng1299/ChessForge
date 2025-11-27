@@ -23,7 +23,7 @@
 
     <suki:SukiWindow.MenuItems>
         <MenuItem Header="{x:Static i18n:Base.File}">
-            <MenuItem Header="add">
+            <MenuItem Header="{x:Static i18n:Base.LoadScript}" Command="{Binding OpenScriptDialog}">
             
             </MenuItem>
         </MenuItem>
@@ -31,9 +31,7 @@
 
     <Grid RowDefinitions="Auto, *">
         <TextBlock Grid.Row="0" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	    <lc:Board Grid.Row="1">
-		
-        </lc:Board>
+	    <lc:Board Grid.Row="1" RenderAction="{Binding DrawBoard}"/>
     </Grid>
 
 </suki:SukiWindow>

@@ -117,8 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>choose file</value>
+    <comment>选择文件对话框标题</comment>
+  </data>
   <data name="File" xml:space="preserve">
     <value>file</value>
     <comment>菜单file</comment>
+  </data>
+  <data name="LoadScript" xml:space="preserve">
+    <value>Load Sctipt</value>
+    <comment>加载脚本</comment>
   </data>
 </root>

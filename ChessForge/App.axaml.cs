@@ -1,8 +1,11 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using ChessForge.services;
 using ChessForge.ViewModels;
 using ChessForge.Views;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ChessForge
 {
@@ -21,10 +24,23 @@ namespace ChessForge
                 {
                     DataContext = new MainWindowViewModel(),
                 };
+
+                var services = new ServiceCollection();
+
+                services.AddSingleton<FilesService>(x => new FilesService(desktop.MainWindow));
+
+                Services = services.BuildServiceProvider();
             }
 
             base.OnFrameworkInitializationCompleted();
         }
+
+        public new static App? Current => Application.Current as App;
+
+        /// <summary>
+        /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.
+        /// </summary>
+        public IServiceProvider? Services { get; private set; }
 
     }
 }

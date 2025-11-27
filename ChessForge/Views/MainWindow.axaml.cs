@@ -1,4 +1,8 @@
+using Avalonia.Controls;
+using Avalonia.Platform.Storage;
+using ChessForge.ViewModels;
 using SukiUI.Controls;
+using System.Threading.Tasks;
 
 namespace ChessForge.Views
 {
@@ -7,6 +11,13 @@ namespace ChessForge.Views
         public MainWindow()
         {
             InitializeComponent();
+            this.Closed += (sender, e) =>
+            {
+                if (DataContext is MainWindowViewModel vm)
+                {
+                    vm.Close();
+                }
+            };
         }
     }
 }

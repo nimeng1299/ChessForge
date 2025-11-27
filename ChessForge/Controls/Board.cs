@@ -10,6 +10,13 @@ namespace ChessForge.Controls
 {
     public class Board: Avalonia.Controls.Control
     {
+        public static readonly StyledProperty<Action<DrawingContext, Rect>?> RenderActionProperty = AvaloniaProperty.Register<Board, Action<DrawingContext, Rect>?>(nameof(RenderAction));
+
+        public Action<DrawingContext, Rect>? RenderAction
+        {
+            get => GetValue(RenderActionProperty);
+            set => SetValue(RenderActionProperty, value);
+        }
         public override void Render(DrawingContext context)
         {
             base.Render(context);
@@ -17,6 +24,8 @@ namespace ChessForge.Controls
             var rect = new Rect(Bounds.Size);
             var pen = new Pen(Brushes.Red, 3);
             context.DrawRectangle(null, pen, rect);
+
+            RenderAction?.Invoke(context, Bounds);
         }
     }
 }

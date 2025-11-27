@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Avalonia;
+using Avalonia.Media;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +18,14 @@ namespace ChessForge.Scripts
         /// </summary>
         /// <param name="path"></param>
         public void Load(string path);
+
+        public Action<DrawingContext, Rect>? Render();
+
+        /// <summary>
+        /// 用于重新加载脚本
+        /// </summary>
+        public void Reload();
+
+        public void Close();
     }
 }
