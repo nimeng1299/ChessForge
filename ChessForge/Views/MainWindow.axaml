@@ -31,7 +31,7 @@
 
     <Grid RowDefinitions="Auto, *">
         <TextBlock Grid.Row="0" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	    <lc:Board Grid.Row="1" RenderAction="{Binding DrawBoard}"/>
+	    <lc:Board Grid.Row="1"  RenderAction="{Binding DrawBoard}" ClickAction="{Binding BoardClickAction}"/>
     </Grid>
 
 </suki:SukiWindow>

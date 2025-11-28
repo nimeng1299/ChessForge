@@ -27,5 +27,7 @@ namespace ChessForge.Scripts
         public void Reload();
 
         public void Close();
+
+        public void Click(double x, double y);
     }
 }

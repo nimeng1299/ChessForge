@@ -4,6 +4,7 @@ using Python.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -13,6 +14,12 @@ namespace ChessForge.Scripts
 {
     public class PyScript : IScript
     {
+        private ScriptRender render = new();
+        private string path;
+
+        private dynamic _sys;
+        private dynamic _module;
+        private dynamic _pychess;
 
         public PyScript(string path) {
             if (!PythonEngine.IsInitialized)
@@ -21,12 +28,26 @@ namespace ChessForge.Scripts
                 PythonEngine.Initialize();
                 // 使用这个后可以不使用 PythonEngine.Shutdown() -> 因为这个有漏洞
                 PythonEngine.BeginAllowThreads();
+
+                Load(path);
+
             }
-            this.Load(path);
+            
         }
         public void Load(string path)
         {
-            
+            this.path = path;
+
+            using (Py.GIL())
+            {
+                _sys = Py.Import("sys");
+                _sys.path.append(Path.GetDirectoryName(path));
+                _module = Py.Import(Path.GetFileNameWithoutExtension(path));
+
+                dynamic scope = Py.CreateScope();
+                scope.Set("render", render.ToPython());
+                _pychess = _module.LoadChess(render);
+            }
         }
 
         public void Reload()
@@ -36,7 +57,11 @@ namespace ChessForge.Scripts
 
         public Action<DrawingContext, Rect>? Render()
         {
-            return null;
+            using (Py.GIL())
+            {
+                _pychess.Render();
+            }
+            return render.DrawBoard;
         }
 
         public void Close()
@@ -46,6 +71,14 @@ namespace ChessForge.Scripts
                 //PythonEngine.Shutdown();
             }
 
+        }
+
+        public void Click(double x, double y)
+        {
+            using (Py.GIL())
+            {
+                _pychess.Click( x, y);
+            }
         }
 
         ~PyScript()

@@ -4,10 +4,13 @@ using Avalonia.Media;
 using ChessForge.Models;
 using ChessForge.services;
 using Microsoft.Extensions.DependencyInjection;
+using ReactiveUI;
 using System;
 using System.IO;
 using System.Linq.Dynamic.Core.Tokenizer;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ChessForge.ViewModels
 {
@@ -20,10 +23,10 @@ namespace ChessForge.ViewModels
                 return this.chess.Greeting;
             } 
         }
-        public Action<DrawingContext, Rect>? DrawBoard { get
-            {
-                return chess.Script?.Render();
-            }
+        private Action<DrawingContext, Rect>? _drawBoard;
+        public Action<DrawingContext, Rect>? DrawBoard { 
+            get =>_drawBoard;
+            private set => this.RaiseAndSetIfChanged(ref _drawBoard, value);
         }
 
         public async void OpenScriptDialog()
@@ -37,11 +40,29 @@ namespace ChessForge.ViewModels
                 if (file is null) return;
 
                 chess.LoadScript(file.Path);
+                DrawBoard = chess.Script?.Render();
 
             }
             catch (Exception e)
             {
-                Console.WriteLine("OpenScriptDialog exception is {0}", e);
+                
+            }
+        }
+
+
+        public Action<Rect, Point>? BoardClickAction => OnBoardClick;
+        public void OnBoardClick(Rect bounds, Point p)
+        {
+            try
+            {
+                chess.Script?.Click(p.X, p.Y);
+
+
+                DrawBoard = chess.Script?.Render();
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

@@ -10,7 +10,7 @@ namespace ChessForge.Models
 {
     public class Chess
     {
-        public string Greeting { get; } = "Welcome to Avalonia!";
+        public string Greeting { get; } = "Test Aa Bb Cc Dd";
 
         public IScript? Script { get; set; }
 
