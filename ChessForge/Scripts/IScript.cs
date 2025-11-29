@@ -29,5 +29,8 @@ namespace ChessForge.Scripts
         public void Close();
 
         public void Click(double x, double y);
+        public int IsWin();
+
+        public void NewGame();
     }
 }

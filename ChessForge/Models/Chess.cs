@@ -1,4 +1,5 @@
-﻿using ChessForge.Scripts;
+﻿using Avalonia.Controls.Notifications;
+using ChessForge.Scripts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,5 +29,13 @@ namespace ChessForge.Models
         {
             Script?.Close();
         }
+
+        public bool InfoBarIsOpaque {  get; set; }
+        public bool InfoBarIsCloseable { get; set; }
+        public bool InfoBarIsOpen { get; set; } = false;
+        public NotificationType InfoBarServerity { get; set; } = NotificationType.Success;
+        public string InfoBarTitle { get; set; } = "";
+        public string InfoBarMessage { get; set; } = "";
+
     }
 }

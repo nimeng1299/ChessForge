@@ -125,8 +125,16 @@
     <value>file</value>
     <comment>菜单file</comment>
   </data>
+  <data name="Game" xml:space="preserve">
+    <value>Game</value>
+    <comment>菜单Game</comment>
+  </data>
   <data name="LoadScript" xml:space="preserve">
     <value>Load Sctipt</value>
     <comment>加载脚本</comment>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>new game</value>
+    <comment>新游戏</comment>
   </data>
 </root>

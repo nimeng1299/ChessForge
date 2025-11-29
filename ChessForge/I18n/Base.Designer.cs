@@ -79,11 +79,29 @@ namespace ChessForge.I18n {
         }
         
         /// <summary>
+        ///   查找类似 Game 的本地化字符串。
+        /// </summary>
+        public static string Game {
+            get {
+                return ResourceManager.GetString("Game", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Load Sctipt 的本地化字符串。
         /// </summary>
         public static string LoadScript {
             get {
                 return ResourceManager.GetString("LoadScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 new game 的本地化字符串。
+        /// </summary>
+        public static string NewGame {
+            get {
+                return ResourceManager.GetString("NewGame", resourceCulture);
             }
         }
     }

@@ -123,7 +123,13 @@
   <data name="File" xml:space="preserve">
     <value>file</value>
   </data>
+  <data name="Game" xml:space="preserve">
+    <value>game</value>
+  </data>
   <data name="LoadScript" xml:space="preserve">
     <value>Load Sctipt</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>new game</value>
   </data>
 </root>

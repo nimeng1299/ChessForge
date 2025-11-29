@@ -63,6 +63,17 @@ namespace ChessForge.Scripts
             }
             return render.DrawBoard;
         }
+        /// <summary>
+        /// 判读是否胜利, 1 表示胜利，0 表示未结束，-1 表示失败 (从上次Click走棋的玩家来看)
+        /// </summary>
+        /// <returns></returns>
+        public int IsWin()
+        {
+            using (Py.GIL())
+            {
+                return _pychess.IsWin();
+            }
+        }
 
         public void Close()
         {
@@ -78,6 +89,14 @@ namespace ChessForge.Scripts
             using (Py.GIL())
             {
                 _pychess.Click( x, y);
+            }
+        }
+
+        public void NewGame()
+        {
+            using (Py.GIL())
+            {
+                _pychess.NewGame();
             }
         }
 

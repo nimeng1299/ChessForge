@@ -117,7 +117,7 @@ namespace ChessForge.Scripts
         {
             DrawBoard += (DrawingContext cx, Rect bound) =>
             {
-                var color = new SolidColorBrush(Color.FromArgb((byte)r, (byte)g, (byte)b, (byte)a));
+                var color = new SolidColorBrush(Color.FromArgb((byte)a, (byte)r, (byte)g, (byte)b));
                 cx.DrawEllipse(color, pen, new Point(center_x, center_y),r1, r2);
             };
         }

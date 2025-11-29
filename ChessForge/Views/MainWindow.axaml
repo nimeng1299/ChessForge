@@ -23,15 +23,29 @@
 
     <suki:SukiWindow.MenuItems>
         <MenuItem Header="{x:Static i18n:Base.File}">
-            <MenuItem Header="{x:Static i18n:Base.LoadScript}" Command="{Binding OpenScriptDialog}">
-            
-            </MenuItem>
+            <MenuItem Header="{x:Static i18n:Base.LoadScript}" Command="{Binding OpenScriptDialog}"/>
+        </MenuItem>
+        <MenuItem Header="{x:Static i18n:Base.Game}">
+            <MenuItem Header="{x:Static i18n:Base.NewGame}" Command="{Binding NewGame}"/>
         </MenuItem>
     </suki:SukiWindow.MenuItems>
 
     <Grid RowDefinitions="Auto, *">
-        <TextBlock Grid.Row="0" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	    <lc:Board Grid.Row="1"  RenderAction="{Binding DrawBoard}" ClickAction="{Binding BoardClickAction}"/>
+        <suki:InfoBar
+            Grid.Row="0"
+            Title="{Binding InfoBarTitle}"
+            IsOpaque="{Binding InfoBarIsOpaque}"
+            IsClosable="{Binding InfoBarIsCloseable}"
+            IsOpen="{Binding InfoBarIsOpen, Mode=TwoWay}"
+            Severity="{Binding InfoBarServerity}"
+            Message="{Binding InfoBarMessage}"
+        />
+
+       
+        <Grid Grid.Row="1" RowDefinitions="Auto, *">
+            <TextBlock Grid.Row="0" Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <lc:Board Grid.Row="1" RenderAction="{Binding DrawBoard}" ClickAction="{Binding BoardClickAction}"/>
+        </Grid>
     </Grid>
 
 </suki:SukiWindow>
